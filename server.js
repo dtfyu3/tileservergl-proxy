@@ -1,15 +1,13 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const NodeCache = require('node-cache');
-const cache = new NodeCache({ stdTTL: 3600 }); // Кэш на 1 час
-const path = require('path');
-const { spawn } = require('cross-spawn');
-const fs = require('fs');
+const cache = new NodeCache({ stdTTL: 3600 });
 require('dotenv').config();
 
 const app = express();
 
 const proxyUrl = process.env.PROXY_URL
+
 app.use('/tiles', (req, res, next) => {
     const cacheKey = req.originalUrl;
     const cachedResponse = cache.get(cacheKey);
@@ -41,8 +39,4 @@ app.listen(3000, () => {
     console.log('Прокси-сервер запущен на http://localhost:3000');
 });
 
-process.on('SIGINT', () => {
-    console.log('Завершение работы...');
-    tileserverProcess.kill(); // Завершить tileserver-gl
-    process.exit();
-});
+
