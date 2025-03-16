@@ -14,7 +14,7 @@ app.use('/tiles', (req, res, next) => {
         res.send(cachedResponse.body);
     } else {
         createProxyMiddleware({
-            target: 'http://localhost:8080',
+            target: process.env.PROXY_URL,
             changeOrigin: true,
             pathRewrite: { '^/tiles': '' },
             onProxyRes: (proxyRes, req, res) => {
