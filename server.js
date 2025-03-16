@@ -35,6 +35,10 @@ app.use('/tiles', (req, res, next) => {
     }
 });
 
+app.get('/', (req, res) => {
+  res.send('Hello from the proxy server!');
+});
+
 app.listen(3000, () => {
     console.log('Прокси-сервер запущен на http://localhost:3000');
 });
