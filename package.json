@@ -1,8 +1,14 @@
 {
+  "name": "tileservergl-proxy",
+  "version": "1.0.0",
+  "main": "server.js",
   "dependencies": {
-    "express": "^4.21.2",
-    "http-proxy-middleware": "^3.0.3",
-    "node-cache": "^5.1.2",
-    "dotenv": "^10.0.0"
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.0",
+    "dotenv": "^10.0.0",
+    "node-cache": "^5.1.2"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
