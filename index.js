@@ -37,4 +37,4 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('Прокси-сервер запущен на http://localhost:3000');
 });
-export default app;
+
