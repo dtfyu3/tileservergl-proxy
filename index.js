@@ -2,9 +2,14 @@ const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const NodeCache = require('node-cache');
 const cache = new NodeCache({ stdTTL: 3600 }); // Кэш на 1 час
+const cors = require('cors');
 
 const app = express();
-
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept'
+}));
 app.use('/tiles', (req, res, next) => {
     const cacheKey = req.originalUrl;
     const cachedResponse = cache.get(cacheKey);
